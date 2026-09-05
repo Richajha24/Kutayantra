@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="An educational interactive simulator connecting Arthashastra and Indian Knowledge Systems (IKS) with the modern Diffie–Hellman key exchange algorithm.">
+    <title>KŪṬAYANTRA · Diffie–Hellman Key Exchange Simulator</title>
+
+    <!-- Fonts: Eczar (Headings), Karla (Body), JetBrains Mono (Math) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Eczar:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION BAR / SCHOLARLY HEADER -->
+    <nav class="top-nav" aria-label="Main Navigation">
+        <div class="nav-container">
+            <div class="brand">
+                <span class="deva-mark">कूटयन्त्र</span>
+                <span class="brand-title">KŪṬAYANTRA</span>
+            </div>
+            <div class="nav-links">
+                <a href="#arthashastra">Statecraft</a>
+                <a href="#cs-formalization">Diffie–Hellman</a>
+                <a href="#mapping">Conceptual Bridge</a>
+                <a href="#simulator" class="nav-cta">Simulator</a>
+                <a href="#math-proof">Mathematics</a>
+                <a href="#limitations">Security Notes</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <main>
+
+        <!-- 1. HERO SECTION -->
+        <header class="hero-section" id="hero">
+            <div class="parchment-pattern-overlay" aria-hidden="true"></div>
+            <div class="hero-content">
+                <div class="eyebrow-badge">
+                    <span class="bullet-dot"></span>
+                    INDIAN KNOWLEDGE SYSTEMS · ARTHASHASTRA
+                    <span class="bullet-dot"></span>
+                </div>
+
+                <h1 class="hero-title">KŪṬAYANTRA</h1>
+                <p class="hero-subtitle">The Key Exchange Simulator</p>
+
+                <blockquote class="hero-quote">
+                    “How two courts, watched by a spy on the road between them, can still agree on a secret that only
+                    they know.”
+                </blockquote>
+
+                <div class="hero-court-pillars">
+                    <div class="court-pillar magadha-pillar">
+                        <span class="pillar-deva">मगध</span>
+                        <span class="pillar-name">MAGADHA</span>
+                        <span class="pillar-sub">FIRST COURT</span>
+                    </div>
+                    <div class="road-connector-line" aria-hidden="true">
+                        <span class="road-dot"></span>
+                        <span class="road-label">WATCHED ROAD</span>
+                        <span class="road-dot"></span>
+                    </div>
+                    <div class="court-pillar avanti-pillar">
+                        <span class="pillar-deva">अवन्ति</span>
+                        <span class="pillar-name">AVANTI</span>
+                        <span class="pillar-sub">SECOND COURT</span>
+                    </div>
+                </div>
+
+                <div class="hero-cta-wrapper">
+                    <a href="#simulator" class="cta-button">
+                        <span>Explore the Exchange</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M7 13l5 5 5-5M12 6v12" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. ARTHASHASTRA EXPLANATION -->
+        <section id="arthashastra" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-num">01</span>
+                    <h2>Security as Statecraft</h2>
+                    <div class="decorative-rule"></div>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="text-block">
+                        <p class="lead-text">
+                            The <em>Arthashastra</em>, authored by Kautilya (Chanakya), details the mandala theory of
+                            foreign policy, secret intelligence, and secure court-to-court communication.
+                        </p>
+                        <p>
+                            In ancient Indian diplomacy, envoys and messengers travelled across open roads between
+                            kingdoms. Because roads were routinely monitored by rival spies (<em>gūḍhapuruṣa</em>),
+                            sensitive military counsel could not simply be sent in plain writing across the kingdom
+                            borders.
+                        </p>
+
+                        <div class="callout-box warning-callout">
+                            <div class="callout-icon">👁</div>
+                            <div class="callout-content">
+                                <strong>The Core Principle:</strong>
+                                <p class="highlighted-motto">“The road itself is not trusted.”</p>
+                                <p>Every message passing along the highway must be assumed to be intercepted by
+                                    observers.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-cards-stack">
+                        <div class="concept-card">
+                            <div class="card-tag">आरम्भ · PUBLIC DECREE</div>
+                            <h3>Public Decree</h3>
+                            <p>Information proclaimed openly across the land, accessible to both friendly courts and
+                                watching spies alike.</p>
+                        </div>
+
+                        <div class="concept-card">
+                            <div class="card-tag">गुह्य · PRIVATE COUNSEL</div>
+                            <h3>Private Counsel</h3>
+                            <p>Secrets discussed strictly behind the closed doors of the council chamber
+                                (<em>mantri-pariṣad</em>), never leaving court walls.</p>
+                        </div>
+
+                        <div class="concept-card">
+                            <div class="card-tag">दूतमार्ग · WATCHED ROAD</div>
+                            <h3>The Watched Road</h3>
+                            <p>The public transport channel between Magadha and Avanti, constantly under surveillance by
+                                active intelligence agents.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Diagram -->
+                <div class="diagram-container">
+                    <div class="diagram-title">COMMUNICATION UNDER SURVEILLANCE</div>
+                    <div class="court-diagram">
+                        <div class="diagram-court">
+                            <span class="court-icon">🏰</span>
+                            <strong>MAGADHA COURT</strong>
+                            <small>Sender A</small>
+                        </div>
+
+                        <div class="diagram-path">
+                            <div class="path-line">
+                                <span class="msg-arrow right">➜ Messenger ➜</span>
+                            </div>
+                            <div class="diagram-road">
+                                <span>PUBLIC HIGHWAY</span>
+                                <div class="spy-node">
+                                    <span class="spy-eye">👁</span>
+                                    <span>WATCHING SPY</span>
+                                </div>
+                            </div>
+                            <div class="path-line">
+                                <span class="msg-arrow left">🠔 Messenger 🠔</span>
+                            </div>
+                        </div>
+
+                        <div class="diagram-court">
+                            <span class="court-icon">🏰</span>
+                            <strong>AVANTI COURT</strong>
+                            <small>Sender B</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. COMPUTER SCIENCE SECTION -->
+        <section id="cs-formalization" class="content-section alt-bg">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-num">02</span>
+                    <h2>The Same Problem, Formalized</h2>
+                    <div class="decorative-rule"></div>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="text-block">
+                        <p class="lead-text">
+                            In 1976, Whitfield Diffie and Martin Hellman published a landmark mathematical solution to
+                            this exact predicament: <em>How can two parties establish a shared secret key over an
+                                insecure public channel?</em>
+                        </p>
+                        <p>
+                            Instead of relying on secret physical couriers, the algorithm relies on the mathematical
+                            asymmetry of <strong>one-way modular arithmetic</strong>.
+                        </p>
+                        <ul class="styled-list">
+                            <li>Both parties agree on public parameters: a prime number <code
+                                    class="inline-code">p</code> and a base generator <code
+                                    class="inline-code">g</code>.</li>
+                            <li>Each party selects a private secret exponent (<code class="inline-code">a</code> for
+                                Magadha, <code class="inline-code">b</code> for Avanti).</li>
+                            <li>Each party computes a public value and transmits it over the insecure road.</li>
+                            <li>Using the received public value and their own private secret, both courts calculate the
+                                exact same final key.</li>
+                        </ul>
+                    </div>
+
+                    <div class="equations-showcase">
+                        <div class="eq-card">
+                            <div class="eq-header">MAGADHA PUBLIC VALUE</div>
+                            <div class="eq-body">
+                                <span class="eq-formula">A = g<sup>a</sup> mod p</span>
+                            </div>
+                            <p class="eq-desc">Sent across the road from Magadha to Avanti</p>
+                        </div>
+
+                        <div class="eq-card">
+                            <div class="eq-header">AVANTI PUBLIC VALUE</div>
+                            <div class="eq-body">
+                                <span class="eq-formula">B = g<sup>b</sup> mod p</span>
+                            </div>
+                            <p class="eq-desc">Sent across the road from Avanti to Magadha</p>
+                        </div>
+
+                        <div class="eq-card key-eq-card">
+                            <div class="eq-header">SHARED SECRET DERIVATION</div>
+                            <div class="eq-body">
+                                <span class="eq-formula">K = B<sup>a</sup> mod p = A<sup>b</sup> mod p = g<sup>ab</sup>
+                                    mod p</span>
+                            </div>
+                            <p class="eq-desc">Identical key computed independently by both courts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. CONCEPTUAL MAPPING -->
+        <section id="mapping" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-num">03</span>
+                    <h2>Conceptual Bridge</h2>
+                    <p class="section-sub">Direct correspondence between Arthashastra statecraft and modern computer
+                        science</p>
+                    <div class="decorative-rule"></div>
+                </div>
+
+                <div class="mapping-table-wrapper">
+                    <div class="mapping-grid">
+                        <!-- Header -->
+                        <div class="mapping-row header-row">
+                            <div class="col-iks">ARTHASHASTRA / IKS METAPHOR</div>
+                            <div class="col-divider"></div>
+                            <div class="col-cs">COMPUTER SCIENCE FORMALISM</div>
+                        </div>
+
+                        <!-- Row 1 -->
+                        <div class="mapping-row">
+                            <div class="col-iks">
+                                <span class="iks-badge">राजसभा</span>
+                                <strong>Two Royal Courts</strong>
+                                <small>Magadha & Avanti requesting secret alliance</small>
+                            </div>
+                            <div class="col-divider">↔</div>
+                            <div class="col-cs">
+                                <strong>Communicating Parties</strong>
+                                <small>Alice & Bob (Party A & Party B)</small>
+                            </div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="mapping-row">
+                            <div class="col-iks">
+                                <span class="iks-badge">राजशासन</span>
+                                <strong>Public Decree</strong>
+                                <small>Open parameters agreed upon by royal proclamation</small>
+                            </div>
+                            <div class="col-divider">↔</div>
+                            <div class="col-cs">
+                                <strong>Public Parameters</strong>
+                                <small>Modulus prime <code class="mono-code">p</code> and Generator base <code
+                                        class="mono-code">g</code></small>
+                            </div>
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="mapping-row">
+                            <div class="col-iks">
+                                <span class="iks-badge">गुप्तमन्त्रणा</span>
+                                <strong>Private Counsel</strong>
+                                <small>Internal court decision known only inside the walls</small>
+                            </div>
+                            <div class="col-divider">↔</div>
+                            <div class="col-cs">
+                                <strong>Private Exponents</strong>
+                                <small>Private secrets <code class="mono-code">a</code> (Magadha) and <code
+                                        class="mono-code">b</code> (Avanti)</small>
+                            </div>
+                        </div>
+
+                        <!-- Row 4 -->
+                        <div class="mapping-row">
+                            <div class="col-iks">
+                                <span class="iks-badge">राजदूत</span>
+                                <strong>Royal Messenger</strong>
+                                <small>Courier carrying modular public result across borders</small>
+                            </div>
+                            <div class="col-divider">↔</div>
+                            <div class="col-cs">
+                                <strong>Public Exchange Values</strong>
+                                <small>Computed values <code class="mono-code">A = g^a mod p</code> and <code
+                                        class="mono-code">B = g^b mod p</code></small>
+                            </div>
+                        </div>
+
+                        <!-- Row 5 -->
+                        <div class="mapping-row">
+                            <div class="col-iks">
+                                <span class="iks-badge">राजमार्ग</span>
+                                <strong>Watched Road</strong>
+                                <small>Public highway open to enemy monitoring</small>
+                            </div>
+                            <div class="col-divider">↔</div>
+                            <div class="col-cs">
+                                <strong>Insecure Public Channel</strong>
+                                <small>Unencrypted transmission network</small>
+                            </div>
+                        </div>
+
+                        <!-- Row 6 -->
+                        <div class="mapping-row">
+                            <div class="col-iks">
+                                <span class="iks-badge">गूढपुरुष</span>
+                                <strong>Royal Spy</strong>
+                                <small>Passive eavesdropper recording all road traffic</small>
+                            </div>
+                            <div class="col-divider">↔</div>
+                            <div class="col-cs">
+                                <strong>Passive Eavesdropper</strong>
+                                <small>Eve (Observes p, g, A, B without modifying)</small>
+                            </div>
+                        </div>
+
+                        <!-- Row 7 -->
+                        <div class="mapping-row highlight-row">
+                            <div class="col-iks">
+                                <span class="iks-badge">गुप्तसन्धि</span>
+                                <strong>Sealed Agreement</strong>
+                                <small>Final shared secret established without crossing the road</small>
+                            </div>
+                            <div class="col-divider">↔</div>
+                            <div class="col-cs">
+                                <strong>Shared Symmetric Key</strong>
+                                <small>Shared Secret <code class="mono-code">K = g^(ab) mod p</code></small>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. MAIN INTERACTIVE SIMULATOR -->
+        <section id="simulator" class="simulator-section">
+            <div class="section-container">
+
+                <div class="section-header text-center">
+                    <span class="section-num">04</span>
+                    <h2>Try the Exchange Yourself</h2>
+                    <p class="section-sub">Magadha and Avanti each choose a secret, then send only their public values
+                        across the watched road.</p>
+                    <div class="decorative-rule centered"></div>
+                </div>
+
+                <!-- PUBLIC PARAMETER PANEL -->
+                <div class="public-decree-panel">
+                    <div class="panel-header">
+                        <span class="panel-icon">📜</span>
+                        <div class="panel-title-group">
+                            <h3>PUBLIC DECREE (Public Parameters)</h3>
+                            <p>These values are public. Anyone on the road, including the spy, may know them.</p>
+                        </div>
+                    </div>
+
+                    <div class="parameter-controls-grid">
+                        <div class="param-group">
+                            <label for="input-p">
+                                Prime Modulus (<code class="mono">p</code>)
+                                <span class="param-hint">Public prime modulus (p &ge; 5)</span>
+                            </label>
+                            <div class="input-with-badge">
+                                <input type="number" id="input-p" value="23" min="5" max="9999" step="1"
+                                    aria-label="Prime Modulus p">
+                                <span id="prime-status" class="badge-status valid">Prime ✓</span>
+                            </div>
+                        </div>
+
+                        <div class="param-group">
+                            <label for="input-g">
+                                Base Generator (<code class="mono">g</code>)
+                                <span class="param-hint">Public generator base (2 &le; g &lt; p)</span>
+                            </label>
+                            <div class="input-with-badge">
+                                <input type="number" id="input-g" value="5" min="2" max="22" step="1"
+                                    aria-label="Base Generator g">
+                                <span id="generator-status" class="badge-status valid">Valid Base ✓</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inline validation alert box -->
+                    <div id="validation-alert" class="validation-message hidden" role="alert"></div>
+
+                    <div class="action-buttons-group">
+                        <button id="btn-begin" class="btn btn-primary">
+                            <span class="btn-icon">⚔️</span>
+                            <span class="btn-text">Begin the Exchange</span>
+                        </button>
+                        <button id="btn-randomize" class="btn btn-secondary">
+                            <span class="btn-icon">🎲</span>
+                            <span class="btn-text">Randomize Secrets</span>
+                        </button>
+                        <button id="btn-reset" class="btn btn-tertiary">
+                            <span class="btn-icon">↺</span>
+                            <span class="btn-text">Reset Defaults</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MAIN THREE-COLUMN SIMULATOR BOARD -->
+                <div class="simulator-board">
+
+                    <!-- MAGADHA COURT PANEL (LEFT) -->
+                    <article class="court-card magadha-card" id="card-magadha">
+                        <div class="court-card-header">
+                            <span class="court-deva">मगध</span>
+                            <h3>MAGADHA</h3>
+                            <span class="court-role">FIRST COURT</span>
+                        </div>
+
+                        <div class="court-secret-box">
+                            <div class="secret-header">
+                                <label for="slider-a">Private Counsel Exponent (<code class="mono">a</code>)</label>
+                                <span id="val-a-display" class="secret-val-badge">a = 6</span>
+                            </div>
+                            <input type="range" id="slider-a" min="1" max="21" value="6" step="1"
+                                aria-label="Magadha Private Secret a">
+                            <div class="secret-privacy-tag">
+                                <span class="lock-icon">🔒</span> Known only within Magadha
+                            </div>
+                        </div>
+
+                        <div class="court-math-box">
+                            <div class="math-box-title">MAGADHA PUBLIC VALUE COMPUTATION</div>
+                            <div class="math-formula-display">
+                                <span class="formula-label">Equation:</span>
+                                <code class="mono">A = g<sup>a</sup> mod p</code>
+                            </div>
+                            <div class="math-calc-result" id="magadha-calc-display">
+                                <span class="placeholder-state">A = ?</span>
+                            </div>
+                        </div>
+
+                        <div class="court-derivation-box" id="magadha-derivation-box">
+                            <div class="math-box-title">SHARED SECRET DERIVATION</div>
+                            <div class="formula-label">Received B from Avanti</div>
+                            <div class="math-calc-result" id="magadha-key-display">
+                                <span class="placeholder-state">K<sub>Magadha</sub> = B<sup>a</sup> mod p = ?</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- WATCHED ROAD & ANIMATED MESSENGER INTERFACE (CENTER) -->
+                    <section class="watched-road-container" id="watched-road-section">
+                        <div class="road-header">
+                            <div class="spy-badge-banner">
+                                <span class="spy-eye-anim">👁</span>
+                                <span>THE SPY IS WATCHING</span>
+                            </div>
+                            <p class="road-subtext">“Everything sent across this road is public.”</p>
+                        </div>
+
+                        <!-- ANIMATION TRACK AREA -->
+                        <div class="road-canvas-area" id="road-canvas">
+                            <div class="court-checkpoint left-checkpoint">
+                                <span class="cp-title">MAGADHA GATE</span>
+                            </div>
+
+                            <!-- Central Highway Track -->
+                            <div class="highway-track">
+                                <!-- Messenger A Path (Magadha -> Avanti) -->
+                                <div class="messenger-lane lane-top">
+                                    <div id="messenger-a" class="messenger-token hidden"
+                                        aria-label="Messenger A carrying public value">
+                                        <span class="msg-icon">📜</span>
+                                        <span class="msg-tag" id="token-a-text">A = 8</span>
+                                    </div>
+                                </div>
+
+                                <!-- Central Surveillance Node -->
+                                <div class="spy-watch-post" id="spy-watch-post">
+                                    <div class="spy-eye-icon">👁</div>
+                                    <span class="spy-node-label">SPY POST</span>
+                                    <div id="spy-intercept-flash" class="spy-intercept-flash hidden">INTERCEPTED!</div>
+                                </div>
+
+                                <!-- Messenger B Path (Avanti -> Magadha) -->
+                                <div class="messenger-lane lane-bottom">
+                                    <div id="messenger-b" class="messenger-token hidden"
+                                        aria-label="Messenger B carrying public value">
+                                        <span class="msg-icon">📜</span>
+                                        <span class="msg-tag" id="token-b-text">B = 19</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="court-checkpoint right-checkpoint">
+                                <span class="cp-title">AVANTI GATE</span>
+                            </div>
+                        </div>
+
+                        <!-- Current Stage Indicator -->
+                        <div class="stage-status-bar" id="stage-status-bar">
+                            <span id="stage-step-num" class="stage-num">STEP 1</span>
+                            <span id="stage-step-text" class="stage-text">Ready to begin exchange</span>
+                        </div>
+                    </section>
+
+                    <!-- AVANTI COURT PANEL (RIGHT) -->
+                    <article class="court-card avanti-card" id="card-avanti">
+                        <div class="court-card-header">
+                            <span class="court-deva">अवन्ति</span>
+                            <h3>AVANTI</h3>
+                            <span class="court-role">SECOND COURT</span>
+                        </div>
+
+                        <div class="court-secret-box">
+                            <div class="secret-header">
+                                <label for="slider-b">Private Counsel Exponent (<code class="mono">b</code>)</label>
+                                <span id="val-b-display" class="secret-val-badge">b = 15</span>
+                            </div>
+                            <input type="range" id="slider-b" min="1" max="21" value="15" step="1"
+                                aria-label="Avanti Private Secret b">
+                            <div class="secret-privacy-tag">
+                                <span class="lock-icon">🔒</span> Known only within Avanti
+                            </div>
+                        </div>
+
+                        <div class="court-math-box">
+                            <div class="math-box-title">AVANTI PUBLIC VALUE COMPUTATION</div>
+                            <div class="math-formula-display">
+                                <span class="formula-label">Equation:</span>
+                                <code class="mono">B = g<sup>b</sup> mod p</code>
+                            </div>
+                            <div class="math-calc-result" id="avanti-calc-display">
+                                <span class="placeholder-state">B = ?</span>
+                            </div>
+                        </div>
+
+                        <div class="court-derivation-box" id="avanti-derivation-box">
+                            <div class="math-box-title">SHARED SECRET DERIVATION</div>
+                            <div class="formula-label">Received A from Magadha</div>
+                            <div class="math-calc-result" id="avanti-key-display">
+                                <span class="placeholder-state">K<sub>Avanti</sub> = A<sup>b</sup> mod p = ?</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- 6. SPY PANEL (WHAT THE SPY SEES) -->
+                <div id="spy-panel" class="spy-section-panel">
+                    <div class="spy-panel-header">
+                        <span class="spy-panel-icon">👁</span>
+                        <div>
+                            <h3>WHAT THE SPY SEES</h3>
+                            <p>The spy sees the entire public exchange, but the private secrets never cross the road.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="spy-grid-comparison">
+                        <!-- Visible Column -->
+                        <div class="spy-col visible-col">
+                            <div class="spy-col-header">
+                                <span class="status-indicator vis-on"></span>
+                                VISIBLE TO THE SPY ON THE ROAD
+                            </div>
+                            <div class="spy-data-list">
+                                <div class="spy-data-row">
+                                    <span class="spy-label">Public Prime Modulus (p):</span>
+                                    <code class="spy-val mono" id="spy-val-p">23</code>
+                                </div>
+                                <div class="spy-data-row">
+                                    <span class="spy-label">Public Base Generator (g):</span>
+                                    <code class="spy-val mono" id="spy-val-g">5</code>
+                                </div>
+                                <div class="spy-data-row">
+                                    <span class="spy-label">Magadha Public Value (A):</span>
+                                    <code class="spy-val mono" id="spy-val-A">8</code>
+                                </div>
+                                <div class="spy-data-row">
+                                    <span class="spy-label">Avanti Public Value (B):</span>
+                                    <code class="spy-val mono" id="spy-val-B">19</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hidden Column -->
+                        <div class="spy-col hidden-col">
+                            <div class="spy-col-header">
+                                <span class="status-indicator vis-off"></span>
+                                STRICTLY HIDDEN FROM SPY
+                            </div>
+                            <div class="spy-data-list">
+                                <div class="spy-data-row">
+                                    <span class="spy-label">Magadha Private Secret (a):</span>
+                                    <code class="spy-val mono masked" id="spy-val-a">••• [PROTECTED]</code>
+                                </div>
+                                <div class="spy-data-row">
+                                    <span class="spy-label">Avanti Private Secret (b):</span>
+                                    <code class="spy-val mono masked" id="spy-val-b">••• [PROTECTED]</code>
+                                </div>
+                                <div class="spy-data-row">
+                                    <span class="spy-label">Final Shared Secret Key (K):</span>
+                                    <code class="spy-val mono masked" id="spy-val-K">••• [PROTECTED]</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="spy-explanation-footer">
+                        <p>
+                            <strong>Why can't the spy deduce <code class="mono">a</code> or <code
+                                    class="mono">b</code>?</strong>
+                            For sufficiently large secure parameters, recovering the private exponent <code
+                                class="mono">a</code> from the public value <code
+                                class="mono">A = g<sup>a</sup> mod p</code> is computationally difficult because of the
+                            <strong>Discrete Logarithm Problem</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 7. FINAL RESULT (SEALED AGREEMENT) -->
+                <div id="sealed-agreement" class="sealed-agreement-panel hidden">
+                    <div class="seal-emblem" aria-hidden="true">
+                        <span class="seal-icon">☸</span>
+                    </div>
+
+                    <span class="seal-eyebrow">SECRET ALLIANCE ESTABLISHED</span>
+                    <h3 class="seal-title">SEALED AGREEMENT</h3>
+
+                    <div class="shared-key-badge-container">
+                        <span class="key-label">SHARED SECRET KEY (K)</span>
+                        <div class="key-number-display" id="final-shared-key-display">2</div>
+                    </div>
+
+                    <div class="agreement-verification-grid">
+                        <div class="verif-item">
+                            <span>MAGADHA DERIVED KEY:</span>
+                            <strong id="final-magadha-derived" class="mono">2</strong>
+                        </div>
+                        <div class="verif-divider">✓</div>
+                        <div class="verif-item">
+                            <span>AVANTI DERIVED KEY:</span>
+                            <strong id="final-avanti-derived" class="mono">2</strong>
+                        </div>
+                    </div>
+
+                    <div class="seal-match-status">
+                        <span class="match-icon">✓</span>
+                        <span>Keys Match Perfectly · Agreement Sealed without Revealing Secrets</span>
+                    </div>
+                </div>
+
+                <!-- 8. STEP LOG / NARRATIVE ACTIVITY LOG -->
+                <div class="narrative-log-panel">
+                    <div class="log-panel-header">
+                        <span class="log-icon">📋</span>
+                        <div>
+                            <h3>EXCHANGE LOG & NARRATIVE TRANSCRIPT</h3>
+                            <p>Real-time record of events during the protocol execution</p>
+                        </div>
+                    </div>
+                    <div class="log-terminal-window">
+                        <ol id="log-list" class="log-entries-list">
+                            <li class="log-entry">00 — Protocol initialized with default parameters. Ready for exchange.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 9. MATHEMATICS EXPLAINER -->
+        <section id="math-proof" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-num">05</span>
+                    <h2>Why Do Both Courts Get the Same Key?</h2>
+                    <p class="section-sub">Interactive proof demonstrating why the two independent calculations yield
+                        identical results</p>
+                    <div class="decorative-rule"></div>
+                </div>
+
+                <div class="math-proof-card">
+                    <div class="proof-step-grid">
+
+                        <div class="proof-column magadha-proof">
+                            <h3>Magadha's Calculation</h3>
+                            <p>Magadha receives Avanti's public value <code class="mono">B = g<sup>b</sup> mod p</code>
+                                and raises it to Magadha's secret <code class="mono">a</code>:</p>
+
+                            <div class="proof-math-box">
+                                <div class="proof-eq-line">
+                                    <span class="step-num">1.</span>
+                                    <span>K<sub>Magadha</sub> = B<sup>a</sup> mod p</span>
+                                </div>
+                                <div class="proof-eq-line">
+                                    <span class="step-num">2.</span>
+                                    <span>K<sub>Magadha</sub> = (g<sup>b</sup> mod p)<sup>a</sup> mod p</span>
+                                </div>
+                                <div class="proof-eq-line highlight">
+                                    <span class="step-num">3.</span>
+                                    <span id="magadha-live-math">K<sub>Magadha</sub> = (5<sup>15</sup>)<sup>6</sup> mod
+                                        23 = 5<sup>90</sup> mod 23 = 2</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="proof-equals-bridge">
+                            <span>=</span>
+                            <small>ALGEBRAIC EQUIVALENCE</small>
+                            <code class="mono">g<sup>ab</sup> mod p</code>
+                        </div>
+
+                        <div class="proof-column avanti-proof">
+                            <h3>Avanti's Calculation</h3>
+                            <p>Avanti receives Magadha's public value <code class="mono">A = g<sup>a</sup> mod p</code>
+                                and raises it to Avanti's secret <code class="mono">b</code>:</p>
+
+                            <div class="proof-math-box">
+                                <div class="proof-eq-line">
+                                    <span class="step-num">1.</span>
+                                    <span>K<sub>Avanti</sub> = A<sup>b</sup> mod p</span>
+                                </div>
+                                <div class="proof-eq-line">
+                                    <span class="step-num">2.</span>
+                                    <span>K<sub>Avanti</sub> = (g<sup>a</sup> mod p)<sup>b</sup> mod p</span>
+                                </div>
+                                <div class="proof-eq-line highlight">
+                                    <span class="step-num">3.</span>
+                                    <span id="avanti-live-math">K<sub>Avanti</sub> = (5<sup>6</sup>)<sup>15</sup> mod 23
+                                        = 5<sup>90</sup> mod 23 = 2</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="proof-summary-box">
+                        <h4>The Mathematical Magic: Exponent Multiplication Property</h4>
+                        <p>
+                            Because modular arithmetic respects exponent multiplication, <code
+                                class="mono">(g<sup>b</sup>)<sup>a</sup> &equiv; (g<sup>a</sup>)<sup>b</sup> &equiv; g<sup>a &times; b</sup> (mod p)</code>.
+                            Neither party needed to know the other's private secret; they simply combined their secret
+                            with the received public message.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. DISCRETE LOGARITHM & LIMITATIONS -->
+        <section id="limitations" class="content-section alt-bg">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-num">06</span>
+                    <h2>Limitations & Security Notes</h2>
+                    <p class="section-sub">Educational context, real-world cryptography, and historical distinction</p>
+                    <div class="decorative-rule"></div>
+                </div>
+
+                <div class="cards-3col-grid">
+
+                    <div class="info-note-card">
+                        <div class="card-icon">🔢</div>
+                        <h3>Small Primes vs. Real Cryptography</h3>
+                        <p>
+                            This simulator uses small numbers (like <code class="mono">p = 23</code>) so human users can
+                            easily trace the steps. Small primes can be broken by trial exponentiation in microseconds.
+                        </p>
+                        <p>
+                            Production Diffie–Hellman (or Elliptic Curve Diffie–Hellman) uses prime numbers that are
+                            <strong>2048 to 4096 bits long</strong> (hundreds of digits).
+                        </p>
+                    </div>
+
+                    <div class="info-note-card">
+                        <div class="card-icon">🛡️</div>
+                        <h3>Lack of Authentication (MITM Risk)</h3>
+                        <p>
+                            Basic Diffie–Hellman does <em>not</em> authenticate the identity of the senders.
+                        </p>
+                        <p>
+                            An active spy on the road could intercept Magadha's messenger, impersonate Avanti, and
+                            establish separate keys with both courts (a <strong>Man-in-the-Middle Attack</strong>).
+                            Modern TLS uses digital signatures / certificates to prevent this.
+                        </p>
+                    </div>
+
+                    <div class="info-note-card">
+                        <div class="card-icon">📜</div>
+                        <h3>Conceptual Mapping Disclaimer</h3>
+                        <p>
+                            The relationship between the <em>Arthashastra</em> and Diffie–Hellman is an
+                            <strong>educational conceptual metaphor</strong>.
+                        </p>
+                        <p>
+                            Kautilya expertly analyzed spy networks, secret codes, and statecraft in 300 BCE, but did
+                            not describe modular exponentiation arithmetic.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 11. FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="deva-mark">कूटयन्त्र</span>
+                <h3>KŪṬAYANTRA</h3>
+                <p>Diffie–Hellman Key Exchange Simulator · Indian Knowledge Systems & Computer Science</p>
+            </div>
+
+            <div class="footer-meta">
+                <p>Built with Pure HTML5, CSS3, & ES6+ Vanilla JavaScript using Native BigInt Modular Arithmetic.</p>
+                <p class="copyright">© Educational & Academic Visualization Project.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
